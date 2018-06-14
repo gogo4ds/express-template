@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "express-template"
+    "url": "github:gogo4ds/express-template"
   },
   "author": "GG",
   "license": "MIT"

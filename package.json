@@ -1,0 +1,15 @@
+{
+  "name": "express-template",
+  "version": "1.0.0",
+  "description": "Skeleton template for express app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "express-template"
+  },
+  "author": "GG",
+  "license": "MIT"
+}

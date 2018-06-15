@@ -3,7 +3,57 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/styles/site.css">
+  <link rel="stylesheet" type="text/css" href="/styles/bootstrap.min.css">
+  <script src="/scripts/jquery-3.3.1.min.js"></script>
+  <script src="/scripts/bootstrap.min.js"></script>
   <title>Express template</title>
 </head>
-  {{{body}}}
+<body>
+  <header>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="navbar-header">
+          <a href="/" class="navbar-brand">Express template</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+        {{#if user}}
+          <div class="navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="/account/details">Welcome({{user.username}})</a></li>
+              {{#if}}
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin<span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="/admin/users">Users</a></li>
+                  </ul>
+                </li>
+              {{/if}}
+              <li><a href="/account/logout">Logout</a></li>
+            </ul>
+          </div>
+        {{/if}}
+        {{#unless user}}
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav pull-right">
+              <a class="nav-item nav-link" href="/account/login">Login</a>
+              <a class="nav-item nav-link" href="/account/register">Register</a>
+            </div>
+          </div>
+        {{/unless}}
+    </nav>
+  </header>
+  <div class="container">
+    {{#if error }}
+      <h2>{{error}}</h2>
+    {{/if}}
+    {{{body}}}
+  </div>
+  <footer>
+    <div class="container modal-footer">
+        <p>&copy; 2018 - Express app template</p>
+    </div>
+  </footer>
+</body>
 </html>

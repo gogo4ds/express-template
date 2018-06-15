@@ -35,16 +35,13 @@ module.exports.seedAdmin = () => {
             let salt = encryption.generateSalt()
             let passwordHash = encryption.hashPassword('admin', salt)
 
-            let roles = []
-            roles.push(role.id)
-
             let user = {
               username: username,
               passwordHash: passwordHash,
               firstName: 'Admin',
               lastName: 'Adminov',
               salt: salt,
-              roles: roles
+              roles: [ role.id ]
             }
 
             User

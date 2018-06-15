@@ -10,7 +10,8 @@ module.exports = app => {
   app.engine('hbs', handlebars({
     extname: '.hbs',
     layoutsDir: 'views/layouts',
-    defaultLayout: 'main'
+    defaultLayout: 'main',
+    helpers: require('./handlebars').helpers
   }))
 
   app.set('view engine', 'hbs')

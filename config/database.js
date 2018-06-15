@@ -11,4 +11,7 @@ module.exports = config => {
 
       console.log('MongoDb Up and running...')
     })
+
+  require('../models/Role').initialize()
+  require('../models/User').seedAdmin()
 }

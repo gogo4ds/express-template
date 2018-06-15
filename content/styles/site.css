@@ -1,3 +1,27 @@
 body {
   text-align: center;
 }
+
+form{
+  margin: auto;
+}
+
+.info-message {
+  text-align: center;
+  padding: 10px;
+  border-radius: 10px;
+  margin: auto;
+  font-size: 2em;
+  display: inline-block;
+  width: 50%;
+}
+
+.error{
+  color: #fcfcfcf3;
+  background-color: #bb2121;
+}
+
+.success{
+  color: #fcfcfcf3;
+  background-color: #117211;
+}

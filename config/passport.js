@@ -8,11 +8,11 @@ module.exports = () => {
       .findOne({ username })
       .then(user => {
         if (!user) {
-          return done(null, false)
+          return done(null, false, { globalError: 'The username or password is invalid!' })
         }
 
         if (!user.authenticate(password)) {
-          return done(null, false)
+          return done(null, false, { globalError: 'The username or password is invalid!' })
         }
 
         return done(null, user)

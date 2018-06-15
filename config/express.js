@@ -30,5 +30,17 @@ module.exports = app => {
   app.use(passport.initialize())
   app.use(passport.session())
 
+  app.use((req, res, next) => {
+    if (req.user) {
+      res.locals.currentUser = req.user
+
+      req.user.isInRole('Admin').then(isAdmin => {
+        res.locals.currentUser.isAdmin = isAdmin
+      })
+    }
+
+    next()
+  })
+
   app.use(express.static(path.join(__dirname, '../content')))
 }

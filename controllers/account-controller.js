@@ -7,7 +7,7 @@ function getRegister (req, res) {
   return res.render('account/register')
 }
 
-function postRegister (req, res) {
+async function postRegister (req, res) {
   const { username, firstName, lastName, password, repeatPassword } = req.body
 
   if (!password) {
@@ -21,27 +21,30 @@ function postRegister (req, res) {
   }
 
   let salt = encryption.generateSalt()
-  let passwordHash = encryption.generateHashedPassword(salt, password)
+  let passwordHash = encryption.generateHashedPassword(password, salt)
 
-  User.create({
-    username: username,
-    firstName: firstName,
-    lastName: lastName,
-    salt: salt,
-    passwordHash: passwordHash
-  }).then(user => {
+  try {
+    let user = await User.create({
+      username: username,
+      firstName: firstName,
+      lastName: lastName,
+      salt: salt,
+      passwordHash: passwordHash
+    })
+
     req.logIn(user, (err, user) => {
       if (err) {
         res.locals.globalError = err
         return res.render('account/register', user)
       }
 
+      req.session.successMessage = 'Registration successfull!'
       return res.redirect('/')
     })
-  }).catch(err => {
-    res.locals.globalError = err
+  } catch (error) {
+    res.locals.globalError = error
     return res.render('account/register', { username, firstName, lastName })
-  })
+  }
 }
 
 function getLogin (req, res) {
@@ -64,13 +67,15 @@ function postLogin (req, res, next) {
         return res.render('account/login', { username, globalError: err })
       }
 
+      req.session.successMessage = `You successfully loggged in as ${username}!`
       return res.redirect('/')
     })
   })(req, res, next)
 }
 
-function logout (req, res) {
-  req.logout()
+async function logout (req, res) {
+  await req.logout()
+  req.session.successMessage = 'You successfully loggged out!'
   return res.redirect('/')
 }
 
@@ -83,6 +88,6 @@ router.route('/login')
   .post(postLogin)
 
 router.route('/logout')
-  .get(logout)
+  .post(logout)
 
 module.exports = router

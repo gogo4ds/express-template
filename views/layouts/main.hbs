@@ -22,8 +22,8 @@
         {{#if currentUser}}
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <ul class="navbar-nav mr-5">
-              <li><a class="nav-item nav-link" href="/account/details">Welcome, {{currentUser.username}}</a></li>
-              {{#if currentUser.isAdmin}}
+              <li><a class="nav-item nav-link" href="/users/details">Welcome, {{currentUser.username}}</a></li>
+              {{#if isAdmin}}
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</a>
                 </li>
@@ -34,7 +34,7 @@
                 </div>
               {{/if}}
               <li>
-                <form id="logout-form" method="POST" action="/account/logout"></form>
+                <form id="logout-form" method="POST" action="/users/logout"></form>
                 <a class="nav-item nav-link" href="javascript:document.getElementById('logout-form').submit()">Logout</a>
               </li>
             </ul>
@@ -43,8 +43,8 @@
         {{#unless currentUser}}
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav mr-5">
-              <a class="nav-item nav-link" href="/account/login">Login</a>
-              <a class="nav-item nav-link" href="/account/register">Register</a>
+              <a class="nav-item nav-link" href="/users/login">Login</a>
+              <a class="nav-item nav-link" href="/users/register">Register</a>
             </div>
           </div>
         {{/unless}}

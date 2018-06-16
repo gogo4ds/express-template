@@ -1,9 +1,9 @@
 const homeController = require('../controllers/home-controller')
-const accountController = require('../controllers/account-controller')
+const usersController = require('../controllers/users-controller')
 
 module.exports = app => {
   app.use('/', homeController)
-  app.use('/account', accountController)
+  app.use('/users', usersController)
 
   app.all('*', (req, res) => {
     res.status(404)

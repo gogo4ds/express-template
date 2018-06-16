@@ -19,14 +19,14 @@ userSchema.method({
     return isSamePasswordHash
   },
 
-  isInRole: function (roleName) {
-    return Role.findOne({name: roleName}).then(role => {
+  isAdmin: function () {
+    return Role.findOne({name: 'Admin'}).then(role => {
       if (!role) {
         return false
       }
 
-      let isInRole = this.roles.indexOf(role.id) !== -1
-      return isInRole
+      var isAdmin = this.roles.indexOf(role.id) > -1
+      return isAdmin
     })
   }
 })

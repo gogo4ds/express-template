@@ -43,5 +43,5 @@ module.exports = app => {
     next()
   })
 
-  app.use(express.static(path.join(__dirname, '../content')))
+  app.use(express.static(path.join(__dirname, '../public')))
 }
